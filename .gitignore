@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 docs
+compile2exe
 
 # local env files
 .env.local

@@ -1,8 +1,8 @@
 <div align="center">
-    <h1>B站合集视频信息助手(Node.js版)(bilibiliLearningToolCLI)</h1>
+    <h1>B站分 P 视频信息助手(Node.js 版)(bilibiliLearningToolCLI)</h1>
     <div>
         <a href="https://www.npmjs.com/package/axios">
-            <img src="https://raster.shields.io/badge/axios-0.27.2-red.svg" />
+            <img src="https://raster.shields.io/badge/axios-0.27.2-brightgreen.svg" />
         </a>
         <a href="https://www.npmjs.com/package/chalk">
             <img src="https://raster.shields.io/badge/chalk-5.0.1-brightgreen.svg" />
@@ -12,6 +12,9 @@
         </a>
         <a href="https://www.npmjs.com/package/inquirer">
             <img src="https://raster.shields.io/badge/inquirer-9.0.0-brightgreen.svg" />
+        </a>
+        <a href="https://www.npmjs.com/package/pkg">
+            <img src="https://raster.shields.io/badge/pkg-5.7.0-brightgreen.svg" />
         </a>
     </div>
     <div>
@@ -32,8 +35,15 @@
 
 ## 项目介绍
 
-- 项目概况
-  **这是一个基于 Node.js 的 B 站分 P 视频时长统计的命令行工具。目前只在 Windows 系统测试，其他系统暂时没测试。**
+- 项目概况  
+  **这是一个基于 Node.js 的 B 站分 P 视频时长统计的命令行工具。**_目前只在 Windows 系统测试，其他系统没设备可以测试。欢迎大家帮忙在 Mac OS 或者 Linux 系统测试。_
+
+- 下载地址：
+  **现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，欢迎下载体验。**
+
+  - `Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.1.0/bilibililearningtool.v0.1.0-win.exe">`bilibililearningtool.v0.1.0-win.exe`</a>
+  - `Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.1.0/bilibililearningtool.v0.1.0-macos">`bilibililearningtool.v0.1.0-macos `</a>
+  - `Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.1.0/bilibililearningtool.v0.1.0-linux">`bilibililearningtool.v0.1.0-linux`</a>
 
 - 使用到的模块：
 
