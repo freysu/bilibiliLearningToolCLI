@@ -14,7 +14,17 @@
       "node16-macos-x64",
       "node16-win-x64"
     ],
-    "assets":["./_appdata/*.js","./*.js","./api/*.js","./api/**/*.js","./runtime/**/*.js","./runtime/**/**/*.js","./runtime/*.js","./node_modules/**/*.js","./node_modules/figlet/fonts/Ghost.flf"]
+    "assets": [
+      "./_appdata/*.js",
+      "./*.js",
+      "./api/*.js",
+      "./api/**/*.js",
+      "./runtime/**/*.js",
+      "./runtime/**/**/*.js",
+      "./runtime/*.js",
+      "./node_modules/**/*.js",
+      "./node_modules/figlet/fonts/Ghost.flf"
+    ]
   },
   "keywords": [],
   "author": "",

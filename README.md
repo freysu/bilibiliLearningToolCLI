@@ -39,11 +39,11 @@
   **这是一个基于 Node.js 的 B 站分 P 视频时长统计的命令行工具。**_目前只在 Windows 系统测试，其他系统没设备可以测试。欢迎大家帮忙在 Mac OS 或者 Linux 系统测试。_
 
 - 下载地址：
-  **现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，欢迎下载体验。**
+  **现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，欢迎下载体验。**
 
-  - `Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.1.0/bilibililearningtool.v0.1.0-win.exe">`bilibililearningtool.v0.1.0-win.exe`</a>
-  - `Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.1.0/bilibililearningtool.v0.1.0-macos">`bilibililearningtool.v0.1.0-macos `</a>
-  - `Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.1.0/bilibililearningtool.v0.1.0-linux">`bilibililearningtool.v0.1.0-linux`</a>
+  - **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.0/bilibililearningtool.v0.2.0-win.exe">`bilibililearningtool.v0.2.0-win.exe`</a>**
+  - **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.0/bilibililearningtool.v0.2.0-macos">`bilibililearningtool.v0.2.0-macos `</a>**
+  - **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.0/bilibililearningtool.v0.2.0-linux">`bilibililearningtool.v0.2.0-linux`</a>**
 
 - 使用到的模块：
 
@@ -54,37 +54,39 @@
 
 - 功能列表
 
-  - [x] 网络获取视频信息/本地读取视频信息 JSON 文件  
+  - [x] 通过 BV 号来获取视频信息/本地读取视频信息 JSON 文件  
          可以校验 BV 号，查看 up 主名、视频标题、总 P 数、总时长、简介、播放量、弹幕数、分享数、点赞数、投币数、收藏数、所属分区、视频地址、创建时间、发布时间
-  - [x] 查询某个分 P 的标题&时长  
-         比如第 2P
-  - [x] 统计一个或多个视频时长  
-         比如预计每天看 X 个小时/每天看 X 集 可以看完多少 P 到多少 P
-  - [x] 查询多个分 P 的标题&时长  
-         比如第 2P 到第 11P
-  - [x] 模糊查询视频列表中符合的分 P  
+  - [x] 观看进度百分比查询  
+         可以查询当前看了多少还剩余多少
+  - [x] 模糊搜索分 P 视频列表符合的分 P  
          可以选择是否区分大小写
+  - [x] 查询一个或多个分 P 的标题时长  
+         比如第 2P 到第 11P
+  - [x] 计算一个或多个视频时长（X 倍数播放|每日看 X 小时|每天看 X 个分 P）  
+         比如预计每天看 X 个小时/每天看 X 集 可以看完多少 P 到多少 P
 
 ## 预览截图
 
 - 初始界面
-  ![初始界面.png](https://s2.loli.net/2022/06/25/vco9MlDpb1KadfV.png)
-- 网络获取视频信息
-  ![网络获取视频信息.png](https://s2.loli.net/2022/06/25/mwpThRqGEyzobjZ.png)
-- 本地读取视频信息
-  ![本地读取视频信息.png](https://s2.loli.net/2022/06/25/MLuIydD83q1fTlP.png)
-- 查询某个分 P 的标题&时长
-  ![查询某个分P的标题&时长.png](https://s2.loli.net/2022/06/25/j4F8MuPBl2tV3c1.png)
-- 查询各个(多个)分 P 的标题&时长
-  ![查询各个分P的标题&时长.png](https://s2.loli.net/2022/06/25/oID9WkQaOTnNMqP.png)
-- 统计一个或多个视频时长-每天看 N 集
-  ![统计一个或多个视频时长-每天看N集.png](https://s2.loli.net/2022/06/25/rjPHClgGtWQyX1e.png)
-- 统计一个或多个视频时长-每天 N 小时
-  ![统计一个或多个视频时长-每天N小时.png](https://s2.loli.net/2022/06/25/K2AIBn4LHtuOMYi.png)
+  ![initui.png](https://s2.loli.net/2022/06/27/v8CmQFR3lfJKbS1.png)
+- 通过 BV 号来获取视频信息
+  ![bvsearch.png](https://s2.loli.net/2022/06/27/NAeImzcRlr6Yuqn.png)
+- 本地读取视频信息 JSON 文件
+  ![localjson.png](https://s2.loli.net/2022/06/27/MQnT92oPlIE1z4G.png)
+- 观看进度百分比查询
+  ![watchper.png](https://s2.loli.net/2022/06/27/G3wyDkQPjKWlb65.png)
 - 模糊查询视频列表符合的分 P-区分大小写
-  ![模糊查询视频列表符合的分P-区分大小写.png](https://s2.loli.net/2022/06/25/Dc7SrGfPoQk8jeb.png)
+  ![vqcase.png](https://s2.loli.net/2022/06/27/57PNk3nUoAWhaFi.png)
 - 模糊查询视频列表符合的分 P-不区分大小写
-  ![模糊查询视频列表符合的分P-不区分大小写.png](https://s2.loli.net/2022/06/25/Ii6VQBjlcde37au.png)
+  ![vqnocase.png](https://s2.loli.net/2022/06/27/4KHN3RqrWyGaUt2.png)
+- 查询一个分 P 的标题时长
+  ![ssingle.png](https://s2.loli.net/2022/06/27/GVxR2BN4eJu9dkh.png)
+- 查询多个分 P 的标题时长
+  ![smore.png](https://s2.loli.net/2022/06/27/4klzQKwH31nVt2u.png)
+- 计算一个或多个视频时长-每天看 N 个分 P
+  ![cnp.png](https://s2.loli.net/2022/06/27/YzogwQ3m2CxRE1A.png)
+- 计算一个或多个视频时长-每天看 N 个小时
+  ![cnh.png](https://s2.loli.net/2022/06/27/8Sog1npIrHFuxh3.png)
 
 ## 快速开始
 
