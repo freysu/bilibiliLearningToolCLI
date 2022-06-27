@@ -1,18 +1,17 @@
 {
-  "name": "bilibililearningtool",
+  "name": "bilibililearningtoolcli",
   "version": "1.0.0",
-  "bin": "index.js",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
     "start": "node index.js",
     "pkg": "pkg ."
   },
   "pkg": {
-    "scripts": [],
     "targets": [
-      "node16-linux-x64",
-      "node16-macos-x64",
-      "node16-win-x64"
+      "node12-linux-x64",
+      "node12-macos-x64",
+      "node12-win-x64"
     ],
     "assets": [
       "./_appdata/*.js",
@@ -35,6 +34,17 @@
     "figlet": "^1.5.2",
     "inquirer": "^7.3.3"
   },
+  "description": "<div align=\"center\">\r     <h1>B站分 P 视频信息助手(Node.js 版)(bilibiliLearningToolCLI)</h1>\r     <div>\r         <a href=\"https://www.npmjs.com/package/axios\">\r             <img src=\"https://raster.shields.io/badge/axios-0.27.2-brightgreen.svg\" />\r         </a>\r         <a href=\"https://www.npmjs.com/package/chalk\">\r             <img src=\"https://raster.shields.io/badge/chalk-5.0.1-brightgreen.svg\" />\r         </a>\r         <a href=\"https://www.npmjs.com/package/figlet\">\r             <img src=\"https://raster.shields.io/badge/figlet-1.5.2-brightgreen.svg\" />\r         </a>\r         <a href=\"https://www.npmjs.com/package/inquirer\">\r             <img src=\"https://raster.shields.io/badge/inquirer-9.0.0-brightgreen.svg\" />\r         </a>\r         <a href=\"https://www.npmjs.com/package/pkg\">\r             <img src=\"https://raster.shields.io/badge/pkg-5.7.0-brightgreen.svg\" />\r         </a>\r     </div>\r     <div>\r         <a href=\"https://github.com/freysu/bilibiliLearningToolCLI\">\r             <img title=\"GitHub forks\" src=\"https://img.shields.io/github/forks/freysu/bilibiliLearningToolCLI.svg?style=social\" />\r         </a>\r         <a href=\"https://github.com/freysu/bilibiliLearningToolCLI\">\r             <img title=\"GitHub stars\" src=\"https://img.shields.io/github/stars/freysu/bilibiliLearningToolCLI.svg?style=social\" />\r         </a>\r         <a href=\"https://github.com/freysu/bilibiliLearningToolCLI\">\r             <img title=\"GitHub watchers\"\r                 src=\"https://img.shields.io/github/watchers/freysu/bilibiliLearningToolCLI.svg?style=social\" />\r         </a>\r     </div>\r </div>",
+  "directories": {
+    "doc": "docs"
+  },
   "devDependencies": {},
-  "description": ""
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freysu/bilibiliLearningToolCLI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/freysu/bilibiliLearningToolCLI/issues"
+  },
+  "homepage": "https://github.com/freysu/bilibiliLearningToolCLI#readme"
 }

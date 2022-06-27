@@ -6,12 +6,31 @@ const inquirer = require('inquirer')
 const chalk = require('chalk')
 const figlet = require('figlet')
 const axios = require('axios')
+const process = require('process')
+
+process.title = 'B站分P视频信息助手'
+
+process.on('exit', (code, reason) => {
+  if (code == 1) {
+    reason && myToast.error(`程序已退出！${reason}`)
+    !reason &&
+      myToast.error(
+        '程序已退出！哎呀，一不小心就报错啦！需要解决报错的话，可以去B站私信我吧(https://space.bilibili.com/14642614)，你也可以加QQ交流群(群号：1537505888)反馈~'
+      )
+  } else if (code == 2) {
+    myToast.success('已为你退出本程序！')
+  } else {
+    myToast.warning('已为你退出本程序！')
+  }
+})
+
 let oRes, res, extractResData, data
+const normalExitCode = true
 
 /**
  * 初始化字符画，打印文本
  */
-const init = () => {
+const init = async () => {
   console.log(
     chalk.green(
       figlet.textSync('FreySu', {
@@ -22,10 +41,10 @@ const init = () => {
     )
   )
   myToast.tip(
-    '欢迎使用我制作的 “B站分P视频信息助手(Node.js版)”！若有使用不明白的话可以在B站私信我！\n欢迎关注我的B站账号(uid：14642614)！\thttps://space.bilibili.com/14642614'
+    '欢迎使用我制作的 “B站分P视频信息助手(Node.js版)”！\n若有使用不明白的话可以在B站私信我！你也可以加QQ交流群(群号：1537505888)\t加群链接：https://sourl.cn/hNKSgk\n欢迎关注我的B站账号(uid：14642614)！\tB站账号链接：https://space.bilibili.com/14642614'
   )
   myToast.tip(
-    `功能列表：\n1. [通过BV号来获取视频信息/本地读取视频信息JSON文件]: \n> 可以校验BV号，查看up主名、视频标题、总P数、总时长、简介、播放量、弹幕数、分享数、点赞数、投币数、收藏数、所属分区、视频地址、创建时间、发布时间\n2. [观看进度百分比查询]: \n> 可以查询当前看了多少还剩余多少\n3. [模糊搜索分P视频列表符合的分P]: \n> 可以选择是否区分大小写\n4. [查询一个或多个分P的标题时长]: \n> 比如第2P或者第3P到第11P\n5. [计算一个或多个视频时长（X倍数播放|每日看X小时|每天看X个分P）]: \n> 比如预计每天看X个小时/每天看X集 可以看完多少P到多少P\n`
+    `功能说明：\n1. [通过BV号来获取视频信息/本地读取视频信息JSON文件]: \n  可以校验BV号，查看up主名、视频标题、总P数、总时长、简介、播放量、弹幕数、分享数、点赞数、投币数、收藏数、所属分区、视频地址、创建时间、发布时间\n2. [观看进度百分比查询]: \n  可以查询当前看了多少还剩余多少\n3. [模糊搜索分P视频列表符合的分P]: \n  可以选择是否区分大小写\n4. [查询一个或多个分P的标题时长]: \n  比如第2P或者第3P到第11P\n5. [计算一个或多个视频时长（X倍数播放|每日看X小时|每天看X个分P）]: \n  比如预计每天看X个小时/每天看X个分P可以看完多少P到多少P`
   )
   console.log('')
 }
@@ -139,6 +158,14 @@ const utils = {
       : `${minutes < 10 ? '0' + String(minutes) : minutes}:${
           seconds1.length == 1 ? seconds1 + '0' : seconds1
         }`
+  },
+  /**
+   * 清屏函数
+   */
+  clear() {
+    return process.stdout.write(
+      process.platform === 'win32' ? '\x1Bc' : '\x1B[2J\x1B[3J\x1B[H'
+    )
   }
 }
 
@@ -162,16 +189,18 @@ const myToast = {
     console.log(
       `${chalk.white.bgRed.italic(` ERROR `)} ${chalk.red.bold(`${msg}`)}`
     )
+  },
+  warning(msg) {
+    console.log(
+      `${chalk.white.bgRed.italic(` WARNING `)} ${chalk.red.bold(`${msg}`)}`
+    )
+  },
+  wrapLine() {
+    console.log(
+      `${chalk.grey('————————————————————————————————————————————————')}`
+    )
   }
 }
-
-/**
- * 清屏函数
- */
-const clear = () =>
-  process.stdout.write(
-    process.platform === 'win32' ? '\x1Bc' : '\x1B[2J\x1B[3J\x1B[H'
-  )
 
 /**
  * 提问
@@ -184,22 +213,20 @@ const askQuestions = (questions) => inquirer.prompt(questions)
  * 主程序入口
  */
 async function main() {
-  init()
-  var isFirstRun = true
-  var isFirstRunMode = true
-  await firstRun(isFirstRun, isFirstRunMode)
+  await init()
+  await firstRun(true, true)
 }
 main()
 
 async function firstRun(isFirstRUN, isFirstRUNMODE) {
-  if (!isFirstRUN) clear()
+  if (!isFirstRUN) utils.clear()
   else isFirstRUN = false
   const { isMainChoice } = await askQuestions([
     {
       name: 'isMainChoice',
       type: 'list',
       message: '主菜单',
-      choices: ['[开始使用]', '[查看帮助]', '[退出]']
+      choices: ['[开始使用]', '[查看帮助]', '[清屏]', '[退出]']
     }
   ])
   switch (isMainChoice) {
@@ -207,14 +234,15 @@ async function firstRun(isFirstRUN, isFirstRUNMODE) {
       await chooseRunMode(isFirstRUNMODE)
       break
     case '[退出]':
-      const a = true
-      if (a) {
-        myToast.success('即将退出！')
-        process.exit(1)
+      if (normalExitCode) {
+        process.exit(2)
       }
       break
+    case '[清屏]':
+      await firstRun(false)
+      break
     case '[查看帮助]':
-      clear()
+      utils.clear()
       myToast.tip(
         `功能列表：\n1. [通过BV号来获取视频信息/本地读取视频信息JSON文件]: \n> 可以校验BV号，查看up主名、视频标题、总P数、总时长、简介、播放量、弹幕数、分享数、点赞数、投币数、收藏数、所属分区、视频地址、创建时间、发布时间\n2. [观看进度百分比查询]: \n> 可以查询当前看了多少还剩余多少\n3. [模糊搜索分P视频列表符合的分P]: \n> 可以选择是否区分大小写\n4. [查询一个或多个分P的标题时长]: \n> 比如第2P或者第3P到第11P\n5. [计算一个或多个视频时长（X倍数播放|每日看X小时|每天看X个分P）]: \n> 比如预计每天看X个小时/每天看X集 可以看完多少P到多少P\n`
       )
@@ -234,13 +262,16 @@ async function firstRun(isFirstRUN, isFirstRUNMODE) {
 /**
  * 选择运行模式-》网络获取或本地读取
  */
-async function chooseRunMode(isFirstRunMode) {
-  if (!isFirstRunMode) clear()
+async function chooseRunMode(isFirstRunMode, errorReason) {
+  if (!isFirstRunMode) utils.clear()
+  if (errorReason) {
+    myToast.error(errorReason)
+    console.log('')
+  }
   try {
     myToast.tip(
-      '如果选择的是通过本地的JSON文件来获取视频信息，请先访问https://api.bilibili.com/x/web-interface/view?bvid=你要查的BV号，再将网页内容保存成.json格式文件到当前目前下，本工具将会读取这个文件\n例如：https://api.bilibili.com/x/web-interface/view?bvid=BV1GL4y1v79M'
+      '获取视频信息说明：\n  如果选择的是通过本地读取JSON文件来获取视频信息，请先访问https://api.bilibili.com/x/web-interface/view?bvid=你要查的BV号，再将网页内容保存成.json格式文件到当前目前下，本工具将会读取这个文件。\n  例如：我要查的视频的BV号是BV1hZ4y1b7SN，那么就访问这个链接 https://api.bilibili.com/x/web-interface/view?bvid=BV1hZ4y1b7SN'
     )
-    console.log('')
     const { isNeedNetwork } = await askQuestions([
       {
         name: 'isNeedNetwork',
@@ -248,9 +279,12 @@ async function chooseRunMode(isFirstRunMode) {
         message: '请选择获取视频信息的方式?',
         choices: [
           '[通过BV号来获取视频信息]',
-          '[通过本地的JSON文件来获取视频信息]',
+          '[通过本地读取JSON文件来获取视频信息]',
           new inquirer.Separator('---'),
-          '[返回]'
+          '[清屏]',
+          '[返回]',
+          '[退出]',
+          new inquirer.Separator('---')
         ]
       }
     ])
@@ -275,21 +309,17 @@ async function chooseRunMode(isFirstRunMode) {
               res = oRes.data.data
               extractResData = extractParseResFn(res)
             } catch (err) {
-              myToast.error(
-                '获取视频信息失败！请检查输入的BV号是否正确！请检查当前网络状态！'
+              await chooseRunMode(
+                false,
+                `获取视频信息失败！请检查输入的BV号是否正确！请检查当前网络状态！${err.message}`
               )
-              console.log('')
-              await chooseRunMode()
             }
           } else {
-            myToast.error('BV号输入有误!请重新操作！')
-            console.log('')
-            await chooseRunMode(true)
+            await chooseRunMode(false, 'BV号输入有误!请重新操作！')
           }
         }
         break
-
-      case '[通过本地的JSON文件来获取视频信息]':
+      case '[通过本地读取JSON文件来获取视频信息]':
         {
           const { inputJsonPath } = await askQuestions([
             {
@@ -318,23 +348,29 @@ async function chooseRunMode(isFirstRunMode) {
             res = JSON.parse(data).data
             extractResData = extractParseResFn(res)
           } catch (e) {
-            myToast.error(`读取JSON文件失败！`)
-            console.log('')
-            await chooseRunMode(true)
+            await chooseRunMode(false, `读取JSON文件失败！${e.message}`)
           }
         }
         break
       case '[返回]':
         await firstRun()
         break
+      case '[清屏]':
+        await chooseRunMode(false)
+        break
+      case '[退出]':
+        if (normalExitCode) {
+          process.exit(2)
+        }
+        break
       default:
-        myToast.error('输入有误，运行结束！')
-        process.exit()
+        process.exit(1, '输入有误，运行结束！')
+        break
     }
     showVideoDesc(res, isNeedNetwork)
     await featureListFn(data, res, extractResData)
   } catch (e) {
-    console.log(e)
+    process.exit(1, e.message)
   }
 }
 
@@ -366,6 +402,7 @@ async function featureListFn(data, res, extractResData) {
         '[计算一个或多个视频时长（X倍数播放|每日看X小时|每天看X个分P）]',
         new inquirer.Separator('---'),
         '[重新获取视频信息]',
+        '[清屏]',
         '[退出]',
         new inquirer.Separator('---')
       ]
@@ -386,7 +423,8 @@ async function everyFeatureListFn(doTarget) {
   switch (doTarget) {
     case '[查询一个或多个分P的标题和时长]':
       {
-        myToast.tip(`当前视频的总P数：${extractResData.videos}`)
+        myToast.wrapLine()
+        myToast.tip(`当前视频的总P数： ${extractResData.videos} `)
         const { isMultiple, searIdx1, endIdx1 } = await askQuestions([
           {
             name: 'isMultiple',
@@ -397,7 +435,16 @@ async function everyFeatureListFn(doTarget) {
           {
             name: 'searIdx1',
             type: 'input',
-            message: `请输入开始的分P数(例：1)：`
+            message: `请输入开始的分P数(例：1)：`,
+            filter: function (val) {
+              if (val >= 1) return val
+              else {
+                console.log('')
+                myToast.error(`哪有从 ${val}P 开始的视频呀！我帮你改成 1P 吧~`)
+                return (val = 1)
+              }
+            },
+            default: 1
           },
           {
             name: 'endIdx1',
@@ -405,7 +452,18 @@ async function everyFeatureListFn(doTarget) {
             message: `请输入结束的分P数(例：${extractResData.videos})：`,
             when: function (answer) {
               return answer.isMultiple
-            }
+            },
+            filter: function (val) {
+              if (val <= extractResData.videos) return val
+              else {
+                console.log('')
+                myToast.error(
+                  `超出总P数(${extractResData.videos})啦！我帮你改成 ${extractResData.videos}P 吧~`
+                )
+                return (val = extractResData.videos)
+              }
+            },
+            default: extractResData.videos
           }
         ])
         if (!isMultiple) {
@@ -420,16 +478,16 @@ async function everyFeatureListFn(doTarget) {
               )}`
             )
           } else {
-            return myToast.error('错误输入！')
+            return myToast.error('输入与实际集数不符！')
           }
         } else {
           if (
             isNaN(searIdx1) ||
             isNaN(endIdx1) ||
-            Number(searIdx1) < 0 ||
-            Number(searIdx1) > Number(extractResData.videos) ||
-            Number(endIdx1) < 0 ||
-            Number(endIdx1) > Number(extractResData.videos)
+            +searIdx1 < 0 ||
+            +searIdx1 > +extractResData.videos ||
+            +endIdx1 < 0 ||
+            +endIdx1 > +extractResData.videos
           ) {
             return myToast.error(`输入与实际集数不符！`)
           }
@@ -451,40 +509,73 @@ async function everyFeatureListFn(doTarget) {
             }
           }
         }
+        myToast.wrapLine()
       }
       break
     case '[计算一个或多个视频时长（X倍数播放|每日看X小时|每天看X个分P）]':
       {
+        myToast.wrapLine()
         myToast.tip(`当前视频的总P数：${extractResData.videos}`)
         const { startIdx, endIdx, pts } = await askQuestions([
           {
             name: 'startIdx',
-            type: 'input',
-            message: `请输入开始的分P数(例：1): `
+            type: 'number',
+            message: `请输入开始的分P数(例：1): `,
+            filter: function (val) {
+              if (val >= 1) return val
+              else {
+                console.log('')
+                myToast.error(`一般都是从 1P 开始的呀！我帮你改成 1P 吧~`)
+                return (val = 1)
+              }
+            },
+            default: 1
           },
           {
             name: 'endIdx',
-            type: 'input',
-            message: `请输入结束的分P数(例：${extractResData.videos})：`
+            type: 'number',
+            message: `请输入结束的分P数(例：${extractResData.videos})：`,
+            filter: function (val) {
+              if (val <= extractResData.videos) return val
+              else {
+                console.log('')
+                myToast.error(
+                  `超出总P数(${extractResData.videos})啦！我帮你改成 ${extractResData.videos}P 吧~`
+                )
+                return (val = extractResData.videos)
+              }
+            },
+            default: extractResData.videos
           },
           {
             name: 'pts',
-            type: 'input',
-            message: `请输入播放的倍数(例：2)：`
+            type: 'number',
+            message: `请输入播放的倍数(例：2)：`,
+            filter: function (val) {
+              if (val <= 16) return val
+              else {
+                console.log('')
+                myToast.error('这倍数不对劲欸！我帮你改成 16 倍吧')
+                return (val = 16)
+              }
+            },
+            default: 2
           }
         ])
-
+        if (+pts < 0) {
+          return myToast.error('倍数输入与实际不符！')
+        }
         const ptsResult = setVideoPTS(pts, extractResData, startIdx, endIdx)
         if (ptsResult.computedDurationRes && ptsResult.newDuration) {
           myToast.success(
-            `第${startIdx}集到第${endIdx}集的总时长为${utils.formatSecond(
+            `第 ${startIdx} 集到第 ${endIdx} 集的总时长为 ${utils.formatSecond(
               ptsResult.computedDurationRes
-            )}`
+            )} `
           )
           myToast.success(
-            `你将要${pts}倍数播放原时长为${utils.formatSecond(
+            `你将要 ${pts} 倍数播放原时长为 ${utils.formatSecond(
               ptsResult.computedDurationRes
-            )}视频,总需要${utils.formatSecond(ptsResult.newDuration)}`
+            )} 视频,总需要 ${utils.formatSecond(ptsResult.newDuration)} `
           )
         } else return myToast.error('输入与实际集数不符！')
 
@@ -501,16 +592,17 @@ async function everyFeatureListFn(doTarget) {
             name: 'inputType',
             type: 'list',
             message: '你要以什么单位来计算？',
-            choices: ['每天看N个小时', '每天看N个分P'],
+            choices: ['每天看X个小时', '每天看X个分P'],
             when: function (answer) {
               // 当watch为true的时候才会到达这步
               return answer.isComputed //只有我return true才会这个confirm
-            }
+            },
+            default: '每天看X个小时'
           }
         ])
         if (isComputed) {
           switch (inputType) {
-            case '每天看N个小时':
+            case '每天看X个小时':
               {
                 // 用于举例的时间
                 const fakerEveryDayHour =
@@ -523,56 +615,60 @@ async function everyFeatureListFn(doTarget) {
                   {
                     name: 'everyDayHour',
                     type: 'input',
-                    message: `你要每天看多少个小时(例：${fakerEveryDayHour})？`
+                    message: `你要每天看多少个小时(例：${fakerEveryDayHour})？`,
+                    default: fakerEveryDayHour
                   }
                 ])
-                if (+everyDayHour < 1) {
+                if (+everyDayHour > 0 && +everyDayHour < 1) {
                   myToast.tip(
-                    `${everyDayHour}小时=${60 * everyDayHour}分钟=${
+                    ` ${everyDayHour} 小时 = ${60 * everyDayHour} 分钟 = ${
                       3600 * everyDayHour
-                    }秒`
+                    } 秒`
                   )
                 }
-                if (everyDayHour && everyDayHour <= 24) {
-                  const template = `每天看${everyDayHour}个小时的话，将要看${(
+                if (+everyDayHour > 0 && everyDayHour <= 24) {
+                  const template = `每天看 ${everyDayHour} 个小时的话，将要看 ${(
                     (0.00028 * ptsResult.newDuration) /
                     everyDayHour
-                  ).toFixed(3)}天`
+                  ).toFixed(3)} 天`
                   myToast.success(template)
-                } else myToast.error(`输入有误！`)
+                } else myToast.error(`输入的值不符合正常逻辑欸！`)
               }
               break
-            case '每天看N个分P':
+            case '每天看X个分P':
               {
-                // 用于举例的N个分p
+                // 用于举例的X个分p
                 const fakerEveryDayVideoNum =
                   endIdx > 2 ? Math.floor(+endIdx / 2) : 1
                 const { everyDayVideoNum } = await askQuestions([
                   {
                     name: 'everyDayVideoNum',
                     type: 'input',
-                    message: `你要每天看多少个分P(例：${fakerEveryDayVideoNum})？`
+                    message: `你要每天看多少个分P(例：${fakerEveryDayVideoNum})？`,
+                    default: fakerEveryDayVideoNum
                   }
                 ])
 
                 everyDayVideoNum >= 1 &&
                 everyDayVideoNum <= extractResData.videos
                   ? myToast.success(
-                      `每天看${everyDayVideoNum}P的话，需要看${(
+                      `每天看 ${everyDayVideoNum}P 的话，需要看 ${(
                         extractResData.videos / everyDayVideoNum
-                      ).toFixed(3)}天`
+                      ).toFixed(3)} 天`
                     )
-                  : myToast.error(`输入有误！`)
+                  : myToast.error(`输入与实际集数不符！`)
               }
               break
           }
         } else {
           myToast.success('已为你跳过计算！')
         }
+        myToast.wrapLine()
       }
       break
     case '[模糊搜索分P视频列表符合的分P]':
       {
+        myToast.wrapLine()
         const firstPageName =
           extractResData.partArr && extractResData.partArr[0]
             ? extractResData.partArr[0].toString().slice(0, 5)
@@ -581,7 +677,8 @@ async function everyFeatureListFn(doTarget) {
           {
             name: 'curSearchText',
             type: 'input',
-            message: `请输入要查找的标题(例：${firstPageName})：`
+            message: `请输入要查找的标题(例：${firstPageName})：`,
+            default: firstPageName
           },
           {
             name: 'isCaseS',
@@ -591,23 +688,30 @@ async function everyFeatureListFn(doTarget) {
           }
         ])
         vagueSearchNameMainFn(curSearchText, isCaseS)
+        myToast.wrapLine()
       }
       break
     case '[观看进度百分比查询]':
       {
+        myToast.wrapLine()
+        // 用于举例的X个分p
+        const fakerReadVideoNum =
+          extractResData.videos > 2 ? Math.floor(+extractResData.videos / 2) : 1
         myToast.tip(`当前视频的总P数：${extractResData.videos}`)
         const { curReadProcessing } = await askQuestions([
           {
             name: 'curReadProcessing',
             type: 'number',
-            message: `你现在看到哪个P啦？`
+            message: `你现在看到哪个P啦？`,
+            default: fakerReadVideoNum
           }
         ])
         if (
           +curReadProcessing < 1 ||
-          +curReadProcessing > +extractResData.videos
+          +curReadProcessing > +extractResData.videos ||
+          isNaN(curReadProcessing)
         ) {
-          myToast.error('错误输入！')
+          myToast.error('输入与实际集数不符！')
         } else {
           const {
             hasWatchTimePer,
@@ -620,10 +724,10 @@ async function everyFeatureListFn(doTarget) {
             myToast.success('真厉害！这么长，你都看完啦！？')
           } else {
             myToast.success(
-              `这个分P视频总共要看${utils.formatSecond(
+              `这个分P视频总共要看 ${utils.formatSecond(
                 extractResData.duration,
                 true
-              )}欸！你已看了${hasWatchTimePer}，还剩${restWatchTimePer}没看哦~${
+              )} 欸！你已看了 ${hasWatchTimePer} ，还剩 ${restWatchTimePer} 没看哦~${
                 ddd > 50 ? '真厉害！你已经看这么多了！' : '加油！坚持就是胜利'
               }！`
             )
@@ -633,29 +737,32 @@ async function everyFeatureListFn(doTarget) {
             myToast.success('真厉害！这么多集，你都看完啦！？')
           } else {
             myToast.success(
-              `这个分P视频总共有${
+              `这个分P视频总共有 ${
                 extractResData.videos
-              }集欸！你已看${hasWatchPagesPer}啦，还剩下${restWatchPagesPer}没看哦~${
+              } 集欸！你已看 ${hasWatchPagesPer} 啦，还剩下 ${restWatchPagesPer} 没看哦~${
                 eee > 50 ? '真厉害！你已经看这么多了！' : '加油！坚持就是胜利！'
               }`
             )
           }
         }
-      }
-      break
-    case '[退出]':
-      const a = true
-      if (a) {
-        myToast.success('即将退出！')
-        process.exit(1)
+        myToast.wrapLine()
       }
       break
     case '[重新获取视频信息]':
-      console.log('')
-      await chooseRunMode()
+      await chooseRunMode(false)
+      break
+    case '[退出]':
+      if (normalExitCode) {
+        process.exit(2)
+      }
+      break
+    case '[清屏]':
+      utils.clear()
       break
     default:
-      myToast.error('选择有误')
+      if (normalExitCode) {
+        process.exit(1, '未做选择')
+      }
       break
   }
 }
@@ -686,7 +793,8 @@ function extractParseResFn(data) {
  * @param {object} oData 要读取的视频信息对象
  * @param {boolean} isNeedNetwork 是否需要网络
  */
-function showVideoDesc(oData, isNeedNetwork) {
+async function showVideoDesc(oData, isNeedNetwork, isFirstRunMode) {
+  if (!isFirstRunMode) utils.clear()
   myToast.success(`成功读取到当前视频的信息!`)
   console.log('')
   const {
@@ -704,25 +812,25 @@ function showVideoDesc(oData, isNeedNetwork) {
   } = oData
   const { view, coin, favorite, share, danmaku, like } = stat
   const url = 'https://www.bilibili.com/video/' + bvid
-  const url1 = 'https://www.bilibili.com/video/av' + aid
   const url2 = 'https://space.bilibili.com/' + owner.mid
-  const templateStr = `------ BV号：${bvid} (AV号：${aid}) ------\n> UP主：${
+  const desc1 = desc.length > 100 ? desc.slice(0, 100) + '...' : desc
+  const templateStr = `————————————————————————————————————————————————————————————————————————————————————————————————\n> UP主：${
     owner.name
-  }(uid:${
+  }\tUP主的uid：${
     owner.mid
-  })\t${url2} \n> 标题：${title}\n> 总P数：${videos}\t总时长：${utils.formatSecond(
+  }\tUP主的主页：${url2} \n————————————————————————————————————————————————————————————————————————————————————————————————\n> 标题：${title}\n> 总P数：${videos}\t总时长：${utils.formatSecond(
     duration
-  )}\n> 视频描述：\n\t${desc}\n>${
+  )}\tBV号：${bvid}\tAV号：${aid}\n> 简介：\n  ${desc1}\n>${
     isNeedNetwork == '[通过本地的JSON文件来获取视频信息]'
-      ? '(此类型数据不会自动更新)'
+      ? '(本地数据不会自动更新)'
       : ''
-  } 播放量：${view}  弹幕数：${danmaku}  分享数：${share}\t 点赞数：${like}  投币数：${coin}  收藏数：${favorite}\n> 分区：${tname}\n> 视频链接：${url}\n\t\t${url1}\n> 创建时间：${utils.formatTime(
-    Number(String(ctime) + '000'),
+  } 播放量：${view}  弹幕数：${danmaku}  分享数：${share}\t 点赞数：${like}  投币数：${coin}  收藏数：${favorite}\n> 分区：${tname}\t视频链接：${url}\n> 创建时间：${utils.formatTime(
+    +(String(ctime) + '000'),
     'Y年M月D日 h:m:s'
   )}\t发布时间：${utils.formatTime(
-    Number(String(pubdate) + '000'),
+    +(String(pubdate) + '000'),
     'Y年M月D日 h:m:s'
-  )}\n------------------------------------------------\n`
+  )}\n————————————————————————————————————————————————————————————————————————————————————————————————\n`
   console.log(chalk.blue(templateStr))
 }
 
@@ -733,7 +841,7 @@ function showVideoDesc(oData, isNeedNetwork) {
  * @returns false | {name：标题,duration：时长}
  */
 function searchVideoTitleAndDuration(idx, oData) {
-  return Number(idx) < 0 || Number(idx) > Number(oData.videos) || isNaN(idx)
+  return +idx < 0 || +idx > +oData.videos || isNaN(idx)
     ? false
     : {
         name: oData.partArr[idx],
@@ -755,10 +863,11 @@ function setVideoPTS(videoPTS, oData, startIdx = 0, endIdx) {
     isNaN(videoPTS) ||
     isNaN(startIdx) ||
     isNaN(endIdx) ||
-    Number(videoPTS) < 0 ||
-    Number(startIdx) < 1 ||
-    Number(endIdx) < Number(startIdx) ||
-    Number(endIdx) > videos
+    +videoPTS < 0 ||
+    +startIdx < 1 ||
+    +endIdx < +startIdx ||
+    +endIdx > videos ||
+    +videoPTS < 0
   )
     return false
 
@@ -783,7 +892,7 @@ function vagueSearchNameMainFn(curSearchText, isCaseSensitive) {
     searchNameFn(extractResData, curSearchText, isCaseSensitive)
   let curSearchRes = ''
   if (searchIndexResArr.length > 0 && searchResArr.length > 0) {
-    myToast.success(`\t查询到${searchResArr.length}条结果，结果如下：`)
+    myToast.success(`\t查询到 ${searchResArr.length} 条结果，结果如下：`)
     for (let i = 0; i < searchResArr.length; i++) {
       let template1 = `>\tP${searchIndexResArr[i]} ${
         searchResArr[i]

@@ -38,14 +38,15 @@
 - 项目概况  
   **这是一个基于 Node.js 的 B 站分 P 视频时长统计的命令行工具。**_目前只在 Windows 系统测试，其他系统没设备可以测试。欢迎大家帮忙在 Mac OS 或者 Linux 系统测试。_
 
-- 下载地址：
-  **现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，欢迎下载体验。**
+- 下载地址  
+  现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，不出意外的话可以直接运行！欢迎下载体验！
+  **当前最新版本号为 v0.2.1**
 
-  - **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.0/bilibililearningtool.v0.2.0-win.exe">`bilibililearningtool.v0.2.0-win.exe`</a>**
-  - **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.0/bilibililearningtool.v0.2.0-macos">`bilibililearningtool.v0.2.0-macos `</a>**
-  - **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.0/bilibililearningtool.v0.2.0-linux">`bilibililearningtool.v0.2.0-linux`</a>**
+  - **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.1/bilibililearningtoolcli.v0.2.1-win.exe">`bilibililearningtoolcli.v0.2.1-win.exe`</a>**
+  - **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.1/bilibililearningtoolcli.v0.2.1-macos">`bilibililearningtoolcli.v0.2.1-macos `</a>**
+  - **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.1/bilibililearningtoolcli.v0.2.1-linux">`bilibililearningtoolcli.v0.2.1-linux`</a>**
 
-- 使用到的模块：
+- 使用到的模块
 
   - 需要安装的
     <a href="https://www.npmjs.com/package/axios">`axios`</a>、<a href="https://www.npmjs.com/package/chalk">`chalk`</a>、<a href="https://www.npmjs.com/package/figlet">`figlet`</a>、<a href="https://www.npmjs.com/package/inquirer">`inquirer `</a>
@@ -92,27 +93,33 @@
 
 1. **如果没有安装过 node，请先去官网下载最新版的再安装！安装了的话，跳过这一步。**
 
-1. 克隆或者 fork 本项目，然后下载下来，打开终端进入文件夹，输入以下命令：  
-    npm 用户：
-   ```
+1. 克隆或者 fork 本项目，然后下载下来，打开终端进入文件夹，输入以下命令：
+   npm 用户
+
+   ```shell
    npm install
    ```
-   yarn 用户：
-   ```
+
+   yarn 用户
+
+   ```shell
    yarn
    ```
+
 1. 等安装好模块后，继续输入以下命令：
-   ```
+   ```shell
    node index.js
    ```
 1. 在终端中看提示进行操作。
    如果不联网，请先访问`https://api.bilibili.com/x/web-interface/view?bvid=你要查的BV号`，将网页内容保存成.json 格式文件到当前目前下，然后本工具将会读取它。  
-   例如：https://api.bilibili.com/x/web-interface/view?bvid=BV1GL4y1v79M
+   例如：我要查的视频的 BV 号是 `BV1hZ4y1b7SN`，那么就访问这个链接 `https://api.bilibili.com/x/web-interface/view?bvid=BV1hZ4y1b7SN`
 
 ## 常见问题 QA：
 
-欢迎关注我的 B 站账号！欢迎 star 本项目！若有使用不明白的话可以在 B 站私信我！<a href="https://space.bilibili.com/14642614">(uid：14642614)</a>  
-<a href="https://space.bilibili.com/14642614">https://space.bilibili.com/14642614</a>
+欢迎 Star 本项目！  
+欢迎关注我的 B 站账号！<a href="https://space.bilibili.com/14642614">https://space.bilibili.com/14642614</a>  
+若有使用不明白的话，你可以在 B 站私信我！<a href="https://space.bilibili.com/14642614">(uid：14642614)</a>  
+你也可以加 QQ 交流群(群号：1537505888)！<a href="https://sourl.cn/hNKSgk">https://sourl.cn/hNKSgk</a>
 
 ## Star History
 
