@@ -1,11 +1,12 @@
 {
   "name": "bilibililearningtoolcli",
-  "version": "1.0.0",
+  "version": "0.2.2",
   "main": "index.js",
-  "bin": "index.js",
+  "bin": "bltcli.js",
   "scripts": {
     "start": "node index.js",
-    "pkg": "pkg ."
+    "pkg": "pkg . --out-path=compile2exe",
+    "pkg-win": "pkg . -t node12-win-x64 --out-path=compile2exe"
   },
   "pkg": {
     "targets": [
@@ -22,7 +23,8 @@
       "./runtime/**/**/*.js",
       "./runtime/*.js",
       "./node_modules/**/*.js",
-      "./node_modules/figlet/fonts/Ghost.flf"
+      "./node_modules/figlet/fonts/Ghost.flf",
+      "./config.json"
     ]
   },
   "keywords": [],

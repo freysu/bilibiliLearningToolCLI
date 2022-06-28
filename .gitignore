@@ -2,6 +2,7 @@
 node_modules
 docs
 compile2exe
+bltcli.js
 
 # local env files
 .env.local
