@@ -1,22 +1,21 @@
 现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，不出意外的话可以直接运行！欢迎下载体验！
-**当前最新版本号为 v0.2.1**
+**当前最新版本号为 v0.2.2**
 
-- **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.1/bilibililearningtoolcli.v0.2.1-win.exe">`bilibililearningtoolcli.v0.2.1-win.exe`</a>**
-- **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.1/bilibililearningtoolcli.v0.2.1-macos">`bilibililearningtoolcli.v0.2.1-macos `</a>**
-- **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.1/bilibililearningtoolcli.v0.2.1-linux">`bilibililearningtoolcli.v0.2.1-linux`</a>**
+- **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-win.exe">`bilibililearningtoolcli.v0.2.2-win.exe`</a>**
+- **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-macos">`bilibililearningtoolcli.v0.2.2-macos `</a>**
+- **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-linux">`bilibililearningtoolcli.v0.2.2-linux`</a>**
 
 ```
-certutil -hashfile bilibililearningtoolcli.v0.2.1-linux MD5
-MD5 的 bilibililearningtoolcli.v0.2.1-linux
-哈希:  ec61943a46ef02ff9af62a3191a52c60
+certutil -hashfile bilibililearningtoolcli.v0.2.2-linux MD5
+MD5 的 bilibililearningtoolcli.v0.2.2-linux 哈希:
+b4ce2c1d6d1afa46d52f6d282dde85f7
 
-certutil -hashfile bilibililearningtoolcli.v0.2.1-macos MD5
-MD5 的 bilibililearningtoolcli.v0.2.1-macos
-哈希:  5dd31d3fff27f6c9e04806f0f40f0d43
+certutil -hashfile bilibililearningtoolcli.v0.2.2-macos MD5
+MD5 的 bilibililearningtoolcli.v0.2.2-macos 哈希:
+1ba460fad40809fc0d651a31e21746a9
 
-certutil -hashfile bilibililearningtoolcli.v0.2.1-win.exe MD5
-MD5 的 bilibililearningtoolcli.v0.2.1-win.exe
-哈希:  415d89b522ccbedec5acb71dd21eab5a
+MD5 的 bilibililearningtoolcli.v0.2.2-win.exe 哈希:
+c5cece27259a1e0ae260a0cc60e87d7b
 ```
 
 ```json
