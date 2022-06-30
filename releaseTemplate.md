@@ -1,68 +1,28 @@
-现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，不出意外的话可以直接运行！欢迎下载体验！
-**当前最新版本号为 v0.2.2**
+- 功能列表
 
-- **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-win.exe">`bilibililearningtoolcli.v0.2.2-win.exe`</a>**
-- **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-macos">`bilibililearningtoolcli.v0.2.2-macos `</a>**
-- **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-linux">`bilibililearningtoolcli.v0.2.2-linux`</a>**
+  - [x] (new)设置功能
+        可以设置是否显示功能提示、功能的默认值，减少操作量，免选择相关的对话框
+  - [x] (new)检查更新
+        可以检查当前版本是否为最新的，提示是否需要更新
 
-```
-certutil -hashfile bilibililearningtoolcli.v0.2.2-linux MD5
-MD5 的 bilibililearningtoolcli.v0.2.2-linux 哈希:
-b4ce2c1d6d1afa46d52f6d282dde85f7
+- 下载地址  
+  现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，不出意外的话可以直接运行！欢迎下载体验！
+  **当前最新版本号为 v0.2.3**
 
-certutil -hashfile bilibililearningtoolcli.v0.2.2-macos MD5
-MD5 的 bilibililearningtoolcli.v0.2.2-macos 哈希:
-1ba460fad40809fc0d651a31e21746a9
+  - **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.3/bilibililearningtoolcli.v0.2.3-win.exe">`bilibililearningtoolcli.v0.2.3-win.exe`</a>**
+  - **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.3/bilibililearningtoolcli.v0.2.3-macos">`bilibililearningtoolcli.v0.2.3-macos `</a>**
+  - **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.3/bilibililearningtoolcli.v0.2.3-linux">`bilibililearningtoolcli.v0.2.3-linux`</a>**
 
-MD5 的 bilibililearningtoolcli.v0.2.2-win.exe 哈希:
-c5cece27259a1e0ae260a0cc60e87d7b
-```
+## 开发记录
 
-```json
-"toast": {
-    "success": {
-      "show": true,
-      "header": {
-        "fontColor": "white",
-        "backgroundColor": "bgGreen"
-      },
-      "msg": {
-        "fontColor": "green",
-        "backgroundColor": null
-      }
-    },
-    "error": {
-      "show": true,
-      "header": {
-        "fontColor": "white",
-        "backgroundColor": "bgRed"
-      },
-      "msg": {
-        "fontColor": "red",
-        "backgroundColor": null
-      }
-    },
-    "warning": {
-      "show": true,
-      "header": {
-        "fontColor": "white",
-        "backgroundColor": "bgYellow"
-      },
-      "msg": {
-        "fontColor": "yellow",
-        "backgroundColor": null
-      }
-    },
-    "tip": {
-      "show": true,
-      "header": {
-        "fontColor": "white",
-        "backgroundColor": "bgMagenta"
-      },
-      "msg": {
-        "fontColor": "magenta",
-        "backgroundColor": null
-      }
-    }
-  },
-```
+- bug
+
+1. 在设置的每个单独的功能页先打印当前所有相关的存储信息，然后还要加个退出和返回
+
+- 任务
+
+1. 修改默认值的地方 第一次运行的时候先恢复 询问是否要为以后设成默认值
+   第一次运行的时候想先标记用户 然后如果确定或者进去设置就设成默认值 Y
+2. 优化布局 Y/2
+3. 用户系统 leancloud uuid ctime uptime 运行次数 Y
+4. 每日推送软件运行状态 N

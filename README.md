@@ -38,14 +38,6 @@
 - 项目概况  
   **这是一个基于 Node.js 的 B 站分 P 视频时长统计的命令行工具。**_目前只在 Windows 系统测试，其他系统没设备可以测试。欢迎大家帮忙在 Mac OS 或者 Linux 系统测试。_
 
-- 下载地址  
-  现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，不出意外的话可以直接运行！欢迎下载体验！
-  **当前最新版本号为 v0.2.2**
-
-  - **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-win.exe">`bilibililearningtoolcli.v0.2.2-win.exe`</a>**
-  - **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-macos">`bilibililearningtoolcli.v0.2.2-macos `</a>**
-  - **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.2/bilibililearningtoolcli.v0.2.2-linux">`bilibililearningtoolcli.v0.2.2-linux`</a>**
-
 - 使用到的模块
 
   - 需要安装的
@@ -65,6 +57,19 @@
          比如第 2P 到第 11P
   - [x] 计算一个或多个视频时长（X 倍数播放|每日看 X 小时|每天看 X 个分 P）  
          比如预计每天看 X 个小时/每天看 X 集 可以看完多少 P 到多少 P
+  - [x] 设置功能
+        可以设置是否显示功能提示、功能的默认值，减少操作量，免选择相关的对话框
+  - [x] 开发者可以记录用户数，用于提升用户体验
+  - [x] 检查更新
+        可以检查当前版本是否为最新的，提示是否需要更新
+
+- 下载地址  
+  现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，不出意外的话可以直接运行！欢迎下载体验！
+  **当前最新版本号为 v0.2.3**
+
+  - **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.3/bilibililearningtoolcli.v0.2.3-win.exe">`bilibililearningtoolcli.v0.2.3-win.exe`</a>**
+  - **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.3/bilibililearningtoolcli.v0.2.3-macos">`bilibililearningtoolcli.v0.2.3-macos `</a>**
+  - **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.3/bilibililearningtoolcli.v0.2.3-linux">`bilibililearningtoolcli.v0.2.3-linux`</a>**
 
 ## 预览截图
 
@@ -88,6 +93,12 @@
   ![cnp.png](https://s2.loli.net/2022/06/27/YzogwQ3m2CxRE1A.png)
 - 计算一个或多个视频时长-每天看 N 个小时
   ![cnh.png](https://s2.loli.net/2022/06/27/8Sog1npIrHFuxh3.png)
+- 检查更新
+  ![checkUpdate.jpg](https://s2.loli.net/2022/07/01/gJFWp3xYAOrV2lM.jpg)
+- 设置功能
+  ![settings-init.png](https://s2.loli.net/2022/07/01/Fhp15zo3UWEZ2fA.png)
+  ![settings-1.png](https://s2.loli.net/2022/07/01/C6T1u3yRGidXzm2.png)
+  ![settings-2.png](https://s2.loli.net/2022/07/01/WS68vBNntdr7CaH.png)
 
 ## 快速开始
 
@@ -98,12 +109,16 @@
 
    ```shell
    npm install
+   #or
+   npm install --save axios@0.27.2 chalk@4.1.2 figlet@1.5.2 inquirer@7.3.3
    ```
 
    yarn 用户
 
    ```shell
    yarn
+   #or
+   yarn add axios@0.27.2 chalk@4.1.2 figlet@1.5.2 inquirer@7.3.3
    ```
 
 1. 等安装好模块后，继续输入以下命令：

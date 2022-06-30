@@ -1,23 +1,19 @@
 {
   "checkUpdate": false,
-  "version": "0.2.2",
-  "uuid": "3c8e2f81-8406-4be0-8e35-5cc1995e424e",
-  "cTime": 1656451856868,
-  "uTime": 1656454100637,
   "ui": { "videoDescription": { "show": true, "fontColorHex": "#57b5c1" } },
   "featureList": {
     "showHelp": true,
     "searchOneMorePagesTitleAndDuration": {
       "showHelp": true,
-      "multipleSearch": { "enable": true }
+      "multipleSearch": { "enable": null }
     },
     "computeOneMorePagesDuration": {
       "showHelp": true,
-      "computed": { "enable": true, "defaultOptions": "每天看X个小时" }
+      "computed": { "enable": null, "defaultOptions": "每天看X个分P" }
     },
     "vagueSearchPages": {
       "showHelp": true,
-      "caseSensitive": { "enable": false }
+      "caseSensitive": { "enable": null }
     },
     "currentReadingProcess": { "showHelp": true }
   }
