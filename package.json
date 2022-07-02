@@ -6,10 +6,11 @@
   "isCollectUser": true,
   "scripts": {
     "start": "node bltcli.js",
-    "pkg": "pkg . --out-path=compile2exe",
-    "pkg-win": "pkg . -t node12-win-x64 --out-path=compile2exe"
+    "pkg": "pkg .",
+    "pkg-win": "pkg . -t node12-win-x64 --out-path=dist"
   },
   "pkg": {
+    "outputPath": "dist",
     "targets": [
       "node12-linux-x64",
       "node12-macos-x64",
