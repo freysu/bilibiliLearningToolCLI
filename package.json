@@ -1,6 +1,6 @@
 {
   "name": "bilibililearningtoolcli",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "main": "bltcli.js",
   "bin": "bltcli.js",
   "isCollectUser": true,

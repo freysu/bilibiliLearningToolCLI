@@ -1,20 +1,34 @@
 {
-  "checkUpdate": false,
-  "ui": { "videoDescription": { "show": true, "fontColorHex": "#57b5c1" } },
-  "featureList": {
-    "showHelp": true,
-    "searchOneMorePagesTitleAndDuration": {
-      "showHelp": true,
-      "multipleSearch": { "enable": null }
+    "checkUpdate": false,
+    "ui": {
+        "videoDescription": {
+            "show": true,
+            "fontColorHex": "#57b5c1"
+        }
     },
-    "computeOneMorePagesDuration": {
-      "showHelp": true,
-      "computed": { "enable": null, "defaultOptions": "每天看X个小时" }
-    },
-    "vagueSearchPages": {
-      "showHelp": true,
-      "caseSensitive": { "enable": null }
-    },
-    "currentReadingProcess": { "showHelp": true }
-  }
+    "featureList": {
+        "showHelp": true,
+        "searchOneMorePagesTitleAndDuration": {
+            "showHelp": true,
+            "multipleSearch": {
+                "enable": null
+            }
+        },
+        "computeOneMorePagesDuration": {
+            "showHelp": true,
+            "computed": {
+                "enable": null,
+                "defaultOptions": "每天看X个小时"
+            }
+        },
+        "vagueSearchPages": {
+            "showHelp": true,
+            "caseSensitive": {
+                "enable": null
+            }
+        },
+        "currentReadingProcess": {
+            "showHelp": true
+        }
+    }
 }

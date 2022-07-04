@@ -16,5 +16,6 @@
       "caseSensitive": { "enable": null }
     },
     "currentReadingProcess": { "showHelp": true }
-  }
+  },
+  "debug":0
 }
