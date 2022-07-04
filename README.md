@@ -61,11 +61,11 @@
 
 - 下载地址  
   现已用<a href="https://www.npmjs.com/package/pkg">`pkg`</a>打包成可执行文件了，可以免安装 node 等任何依赖，不出意外的话可以直接运行！欢迎下载体验！
-  **当前最新版本号为 v0.2.4**
+  **当前最新版本号为 v0.2.5**
 
-  - **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.4/bilibililearningtoolcli.v0.2.4-win.exe">`bilibililearningtoolcli.v0.2.4-win.exe`</a>**
-  - **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.4/bilibililearningtoolcli.v0.2.4-macos">`bilibililearningtoolcli.v0.2.4-macos `</a>**
-  - **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.4/bilibililearningtoolcli.v0.2.4-linux">`bilibililearningtoolcli.v0.2.4-linux`</a>**
+  - **`Windows` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.5/bilibililearningtoolcli.v0.2.5-win.exe">`bilibililearningtoolcli.v0.2.5-win.exe`</a>**
+  - **`Mac OS` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.5/bilibililearningtoolcli.v0.2.5-macos">`bilibililearningtoolcli.v0.2.5-macos `</a>**
+  - **`Linux` 的用户请下载 <a href="https://github.com/freysu/bilibiliLearningToolCLI/releases/download/v0.2.5/bilibililearningtoolcli.v0.2.5-linux">`bilibililearningtoolcli.v0.2.5-linux`</a>**
 
 - 使用到的模块
 
